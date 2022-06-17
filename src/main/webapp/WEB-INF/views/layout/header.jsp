@@ -42,8 +42,9 @@
 	</nav>
 	<br/>
 	
+	<!--
 	<script type="text/javascript">
 	let el_box = document.querySelector("#box");
-	el_box.textContent = "hello";
+	el_box.textContent ="hello";
 	</script>
-	
+	-->

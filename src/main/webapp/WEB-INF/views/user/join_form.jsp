@@ -9,6 +9,7 @@
 	    <label for="username">user name:</label>
 	    <input type="text" class="form-control" placeholder="Enter username" id="username">
 	  </div>
+	  
 	  <div class="form-group">
 	    <label for="password">Password:</label>
 	    <input type="password" class="form-control" placeholder="Enter password" id="password">
@@ -19,10 +20,13 @@
 	    <input type="email" class="form-control" placeholder="Enter password" id="email">
 	  </div>
 	  
-	  <button type="button" class="btn btn-primary">회원가입</button>
+	  <button id="btn-save" type="button" class="btn btn-primary">회원가입</button>
 	</form>
 </div>
 <br/>
 
+<script src="/blog/js/user.js"></script>
 
 <%@ include file="../layout/footer.jsp" %>    
+
+
