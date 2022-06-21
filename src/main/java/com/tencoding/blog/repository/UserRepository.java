@@ -9,4 +9,9 @@ import com.tencoding.blog.model.User;
 public interface UserRepository extends JpaRepository<User, Integer>{
 	// 제네릭 int 사용 못함. wrpper class인 Integer 사용.
 	
+	//insert
+	//select
+	//update
+	//delete
+	
 }
