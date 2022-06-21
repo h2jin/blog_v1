@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>Java Script HTML DOM</h2>
+	
+	<p>태그 이름으로 요소 찾기</p>
+	<p>여기는 구문 안 입니다.</p>
+	
+	<p class="intro">Hello JavaScript</p>
+	
+	<script type="text/javascript">
+	const x = document.querySelectorAll("p.intro");
+	
+	// s 붙는 애들은 배열로 들어오기 때문에 인덱스값 지정해야함.
+		
+	/*
+		const element = document.getElementsByTagName("p");
+		element[0].innerHTML = "index 0번째 수정";
+		
+		const element2 = document.getElementsByClassName("intro");
+		element2[0].innerHTML = "HELLO WORLD";
+		
+		*/
+		
+		x[0].innerHTML = "적용이 되는가?";
+	
+	</script>
+</body>
+</html>
