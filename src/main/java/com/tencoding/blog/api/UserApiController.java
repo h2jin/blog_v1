@@ -16,6 +16,9 @@ import com.tencoding.blog.service.UserService;
 @RestController
 public class UserApiController {
 	
+//	@Autowired
+//	HttpSession httpSession; 이렇게 사용해도 됨.
+	
 	@Autowired
 	UserService userService;
 	
