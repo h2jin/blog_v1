@@ -19,7 +19,7 @@
 
 </head>
 <body>
-	                             <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
 	  <!-- Brand -->
 	  <a class="navbar-brand" href="/blog/">블로그</a>
 	
