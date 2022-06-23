@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,11 +41,12 @@ public class UserApiController {
 		User principal = userService.login(user);
 		// 접근 주체가 정상적으로 username, password 확인 (세션이라는 거대한 메모리에 저장)
 		if(principal != null) {
-			session.setAttribute("principal", principal);
+			session.setAttribute("principal", principal); // Jsession아이디 밑에 principal 키값으로 값이 저장됨.
 			System.out.println("세션 정보가 저장되었습니다.");
 		}
 		
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
-
+	
+	
 }
