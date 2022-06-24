@@ -12,7 +12,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	// spring jpa 네이밍 전략
 	// select * from user where username = ?1 and password = ?2;
 	// 엄격한 기준 지켜서 함수를 만들면 쿼리 만들어줌. 칼럼명은 대문자로 시작
-	User findByUsernameAndPassword(String username, String password);
+//	User findByUsernameAndPassword(String username, String password);
 	// User-테이블
 	
 	// 두번째 방법

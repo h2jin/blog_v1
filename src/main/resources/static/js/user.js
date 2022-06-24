@@ -24,7 +24,7 @@ let index = {
 		$.ajax({
 			// 서버측에 회원가입 요청
 			type: "POST",
-			url: "/api/user",
+			url: "/auth/joinProc",
 			// 오브젝트 형식 java, javascript 서로 다름 중간언어가 필요 (xml, json 등)
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
