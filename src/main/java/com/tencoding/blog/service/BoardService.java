@@ -39,5 +39,17 @@ public class BoardService {
 	public void deleteById(int id) {
 		boardRepository.deleteById(id);
 	}
+	
+	@Transactional
+	public void modifyBoard(int id, Board board) { // title/ content 를 바꿨을 것임.
+		// 업데이트는 먼저 찾아야 함
+		Board boardEntity = boardRepository.findById(id).orElseThrow(() -> { // 영속성 컨텍스트로 가져왔기 때문에 1차캐시에 담겨있을 것임.
+			return new IllegalArgumentException("해당글은 찾을 수 없습니다.");
+		});
+		boardEntity.setTitle(board.getTitle());
+		boardEntity.setContent(board.getContent());
+		// 더티체킹
+		
+	}
 
 }
