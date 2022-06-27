@@ -22,6 +22,7 @@ let index = {
 			url: "/api/board",
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
+			dataType: "json"
 		}).done(function(data, textStatus, xhr) {
 			if(data.status) {
 				alert("글쓰기가 완료되었습니다.");
