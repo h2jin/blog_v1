@@ -30,5 +30,6 @@ public class BoardApiController {
 	}
 	// 2. 서비스 레이어 만들기
 	
+	
 
 }
