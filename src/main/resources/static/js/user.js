@@ -7,9 +7,11 @@ let index = {
 		// document.queryselect - java , $() - Jquery
 		
 		// 전통적인 로그인 방식 일 때 사용한 부분
+		/*
 		 $("#btn-login").bind("click", () => {
 			 this.login();
 		 });
+		 */
 		
 		$("#btn-update").bind("click", () => {
 			this.update();
@@ -49,7 +51,7 @@ let index = {
 		});
 		
 	},
-	
+	/*
 	login: function() {
 		let data = {
 			username: $("#username").val(),
@@ -73,9 +75,10 @@ let index = {
 			console.log(error);
 		});
 	},
-	
+	*/
 	update: function() {
 		let data = {
+			username: $("#username").val(),
 			id: $("#id").val(),
 			password: $("#password").val(),
 			email: $("#email").val()
@@ -83,7 +86,7 @@ let index = {
 		
 		$.ajax({
 			type: "PUT",
-			url: "/user/",
+			url: "/user",
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json"

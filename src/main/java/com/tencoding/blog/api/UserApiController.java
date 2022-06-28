@@ -2,6 +2,10 @@ package com.tencoding.blog.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,29 +17,39 @@ import com.tencoding.blog.service.UserService;
 
 @RestController
 public class UserApiController {
-	
+
 //	@Autowired
 //	HttpSession httpSession; 이렇게 사용해도 됨.
-	
+
 	@Autowired
 	private UserService userService;
-	
-	@PostMapping("/auth/joinProc")
-	// application/x-www-form-urlencoded;charset=UTF-8 // key-value
-	public ResponseDto<Integer> save(User user) {
-		
-		int result = userService.saveUser(user);
-		return new ResponseDto<Integer>(HttpStatus.OK.value(), result);
-	}
-	
+
+	@Autowired // DI처리 바로 되지 않음. 오류 발생 -> (SecurityConfig - 미리 Security에 올려놔야 한다. - bean 등록)
+	private AuthenticationManager authenticationManager;
+
+
 	@PutMapping("/user")
 	public ResponseDto<Integer> update(@RequestBody User user) {
-		userService.updateUser(user);
-		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 		
+		userService.updateUser(user);
+		System.out.println(user);
+
+		// 강제로 Authentication 객체를 만들고 SecurityContext 안에 집어넣으면 된다.
+		// 1. Authentication 객체 생성
+		// 2. AuthenticationManager를 메모리에 올려서 authenticate 메서드를 사용하여 Authentication 객체를
+		// 저장한다.
+		// 3. session 안에 securityContextHolder.getContext().setAuthentication() 메서드를
+		// 활용하여 Authentication 객체를 넣어주면 된다.
+		
+		// import 정확하게 하기
+		Authentication authentication = authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+
 	}
-	
-	
+
 //	@PostMapping("/api/user")
 //	public ResponseDto<Integer> save(@RequestBody User user) {
 //		// DB (벨리데이션 체크) 
@@ -60,6 +74,5 @@ public class UserApiController {
 //		
 //		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 //	}
-	
-	
+
 }
