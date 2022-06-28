@@ -3,6 +3,8 @@ package com.tencoding.blog.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tencoding.blog.dto.ResponseDto;
@@ -24,6 +26,13 @@ public class UserApiController {
 		
 		int result = userService.saveUser(user);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), result);
+	}
+	
+	@PutMapping("/user")
+	public ResponseDto<Integer> update(@RequestBody User user) {
+		userService.updateUser(user);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+		
 	}
 	
 	

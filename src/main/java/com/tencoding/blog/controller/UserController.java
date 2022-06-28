@@ -30,6 +30,12 @@ public class UserController {
 		httpSession.invalidate();
 		return "redirect:/"; // 처음화면으로 돌아감.
 	}
+	
+	@GetMapping("/user/update_form")
+	public String updateForm() {
+		return "user/update_form";
+	}
+	
 
 	
 }

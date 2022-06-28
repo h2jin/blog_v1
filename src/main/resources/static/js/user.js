@@ -6,8 +6,13 @@ let index = {
 		});
 		// document.queryselect - java , $() - Jquery
 		
-		$("#btn-login").bind("click", () => {
-			this.login();
+		// 전통적인 로그인 방식 일 때 사용한 부분
+		 $("#btn-login").bind("click", () => {
+			 this.login();
+		 });
+		
+		$("#btn-update").bind("click", () => {
+			this.update();
 		});
 	},
 	
@@ -67,7 +72,30 @@ let index = {
 			alert("로그인이 실패했습니다.")
 			console.log(error);
 		});
-	}
+	},
+	
+	update: function() {
+		let data = {
+			id: $("#id").val(),
+			password: $("#password").val(),
+			email: $("#email").val()
+		}
+		
+		$.ajax({
+			type: "PUT",
+			url: "/user/",
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
+			dataType: "json"
+		}).done(function(data) {
+			if(data.status) {
+				alert("회원정보 수정이 완료되었습니다.")
+				location.href = "/";
+			}			
+		}).fail(function(error) {
+			alert("회원정보 수정 실패")
+		});
+	} // end of update
 	
 }
 
