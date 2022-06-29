@@ -120,7 +120,7 @@ let index = {
 	}	
 }
 
-function addReplyElement(data) {
+function addReplyElement(reply) {
 	let childElement = `<li class="list-group-item d-flex justify-content-between" id="reply--${reply.id}">
 				<div>${reply.content}</div>
 				<div class="d-flex">
