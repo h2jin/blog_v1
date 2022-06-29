@@ -63,6 +63,14 @@ public class UserService {
 		// 더티체킹 - transactional
 	}
 	
+	@Transactional(readOnly = true)
+	public User searchUser(String username) {
+		User userEnctity = userRepository.findByUsername(username).orElseGet(() -> {
+			return new User();
+		});
+		return userEnctity;
+	}
+	
 
 //	@Transactional(readOnly = true)
 //	public User login(User user) {

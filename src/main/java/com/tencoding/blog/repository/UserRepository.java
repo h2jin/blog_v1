@@ -23,4 +23,6 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	
 	// SELECT * FROM user WHERE username = 1?; (명명규칙 잘 지키기)
 	Optional<User> findByUsername(String username);
+	
+	
 }
