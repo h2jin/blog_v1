@@ -56,7 +56,7 @@ public class Board {
 	// 데이터를 가지고 올때는 board 이름으로 가지고 오지만 board에 필드가 생기지는 않는다. = 연관관계의 주인이 아니다.
 	// EAGER - 데이터 한번에 다 들고옴. LAZY - 나중에 필요할 때 요청하여 데이터 들고올 수 있음.
 	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
-	private List<Reply> reply;
+	private List<Reply> replys;
 	
 	
 
