@@ -24,7 +24,39 @@
 	<br/>
 	<br/>
 	<hr/>
+	
+	<div class="card">
+		<div>
+			<div class="card-body"><textarea class="form-control" rows="1" id="reply-content"></textarea></div>
+			<div class="card-footer"><button type="button" class="btn btn-info" id="reply-save">등록</button></div>
+		</div>
+	</div>
+	<br/>
+	<div class="card">
+		<div class="card-header">댓글 목록</div>
+	</div>
+	<ul class="list-group" id="reply--box">
+		<li class="list-group-item d-flex justify-content-between" id="reply--1">
+			<div>댓글 내용</div>
+			<div class="d-flex">
+				<div>작성자 : username&nbsp;&nbsp;</div>
+				<button class="badge badge-danger">삭제</button>
+			</div>
+		</li>
+		<!-- 반복 예정 -->
+		<li class="list-group-item d-flex justify-content-between">
+			<div>댓글 내용</div>
+			<div class="d-flex">
+				<div>작성자 : username&nbsp;&nbsp;</div>
+				<button class="badge badge-danger">삭제</button>
+			</div>
+		</li>
+	</ul>
+	<br/>
+	<br/>
+	
 </div>
+
 
 <script src="/js/board.js"></script>
 
