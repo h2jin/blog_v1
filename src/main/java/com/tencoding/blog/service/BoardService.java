@@ -59,14 +59,16 @@ public class BoardService {
 	
 	// boardService.writeReply(principalDetail.getUser(), boardId, reply); 
 	@Transactional
-	public void writeReply(User user, int boardId, Reply requestReply) {
+	public Reply writeReply(User user, int boardId, Reply requestReply) { // 매개변수 많으면 dto 만들어서 줄일 수 있음
 		// 댓글 데이터를 넣을 때 오브젝트 타입으로 Board, User도 넣어야함.
 		Board boardEntity = boardRepository.findById(boardId).orElseThrow(() -> {
 			return new IllegalArgumentException("댓글 쓰기 실패 : 게시글 존재하지 않음");
 		});
 		requestReply.setUser(user);
 		requestReply.setBoard(boardEntity);
-		replyRepository.save(requestReply);
+		Reply replyEntity = replyRepository.save(requestReply);
+		// 무한참조 오류 발생 (System.out.println(requestReply);
+		return replyEntity;
 	}
 	
 

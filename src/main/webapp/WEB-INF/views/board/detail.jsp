@@ -37,7 +37,7 @@
 	</div>
 	<ul class="list-group" id="reply--box">
 		<c:forEach var="reply" items="${board.replys}">
-			<li class="list-group-item d-flex justify-content-between" id="reply--1">
+			<li class="list-group-item d-flex justify-content-between" id="reply--${reply.id}">
 				<div>${reply.content}</div>
 				<div class="d-flex">
 					<div>작성자 : ${reply.user.username}&nbsp;&nbsp;</div>
