@@ -59,14 +59,16 @@ public class BoardService {
 	
 	// boardService.writeReply(principalDetail.getUser(), boardId, reply); 
 	@Transactional
-	public void writeReply(User user, int boardId, Reply requestReply) {
+	public Reply writeReply(User user, int boardId, Reply requestReply) {
 		// 댓글 데이터를 넣을 때 오브젝트 타입으로 Board, User도 넣어야함.
 		Board boardEntity = boardRepository.findById(boardId).orElseThrow(() -> {
 			return new IllegalArgumentException("댓글 쓰기 실패 : 게시글 존재하지 않음");
 		});
 		requestReply.setUser(user);
 		requestReply.setBoard(boardEntity);
-		replyRepository.save(requestReply);
+		Reply replyEntity = replyRepository.save(requestReply);
+//		System.out.println("데이터 확인 댓글 : " + replyEntity); // 이때문에 stackoverflow 걸림. 오류노트
+		return replyEntity;
 	}
 	
 
