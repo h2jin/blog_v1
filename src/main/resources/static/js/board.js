@@ -12,6 +12,10 @@ let index = {
 		$("#btn-update").bind("click", () => {
 			this.update();
 		});	
+		
+		$("#btn-reply-save").bind("click", () => {
+			this.replySave();
+		});
 			
 	},
 	
@@ -82,6 +86,36 @@ let index = {
 		}).fail(function(error) {
 			alert("글쓰기 실패!")
 		});
+	},
+	
+	// 댓글 등록 (boardId : 해단 게시글의 Id)
+	replySave: function() {
+		// 데이터 가져오기
+		// json 변환해야 하기 떄문에 오브젝트로 만들것임
+		let data = {
+			boardId: $("#board-id").text(),
+			content: $("#reply-content").val()
+		}
+		
+		console.log("데이터 확인");
+		console.log(data);
+		
+		// (``)백틱 -> 자바 스크립트 변수를 문자열 안에 넣어서 사용할 수 있다.
+		$.ajax({
+			type: "POST",
+			url: `/api/board/${data.boardId}/reply`,
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
+			dataType: "json"
+		}).done(function(response) {
+			if(response.status) {
+				alert("댓글작성이 완료되었습니다.");
+				location.href=`/board/${data.boardId}`;
+			}
+		}).fail(function(error) {
+			alert("댓글작성에 실패하였습니다.")
+		});
+
 	}	
 }
 

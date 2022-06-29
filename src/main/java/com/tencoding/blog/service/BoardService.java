@@ -7,14 +7,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tencoding.blog.model.Board;
+import com.tencoding.blog.model.Reply;
 import com.tencoding.blog.model.User;
 import com.tencoding.blog.repository.BoardRepository;
+import com.tencoding.blog.repository.ReplyRepository;
 
 @Service
 public class BoardService {
 	
 	@Autowired
 	private BoardRepository boardRepository;
+	
+	@Autowired
+	private ReplyRepository replyRepository;
 	
 	@Transactional
 	public void write(Board board, User user) { //  화면 딴에서 title, content 넘어오고, userID 도 매개변수로 받아 넘어옴.
@@ -51,5 +56,18 @@ public class BoardService {
 		// 더티체킹
 		
 	}
+	
+	// boardService.writeReply(principalDetail.getUser(), boardId, reply); 
+	@Transactional
+	public void writeReply(User user, int boardId, Reply requestReply) {
+		// 댓글 데이터를 넣을 때 오브젝트 타입으로 Board, User도 넣어야함.
+		Board boardEntity = boardRepository.findById(boardId).orElseThrow(() -> {
+			return new IllegalArgumentException("댓글 쓰기 실패 : 게시글 존재하지 않음");
+		});
+		requestReply.setUser(user);
+		requestReply.setBoard(boardEntity);
+		replyRepository.save(requestReply);
+	}
+	
 
 }
