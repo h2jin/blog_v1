@@ -59,8 +59,6 @@ public class BoardController {
 		}
 		
 		model.addAttribute("pageable", pageBoards);
-		model.addAttribute( "startPage" , startPage);
-		model.addAttribute( "endPage" , endPage);
 		model.addAttribute("pageNumbers", pageNumbers);
 		return "index";
 	}
