@@ -38,7 +38,7 @@ public class DummyControllerTest {
 	// List로 리턴해도 되고, Page로 리턴해도 된다.
 	// http://Localhost:9090/blog/dummy/user?page=1
 	@GetMapping("/dummy/user")
-	public Page<User> pageList(@PageableDefault(size = 2, sort = "id", direction = Direction.DESC) Pageable pageable) {
+	public Page<User> pageList(@PageableDefault(size = 1, sort = "id", direction = Direction.DESC) Pageable pageable) {
 //		Page<User> pageUser = userRepository.findAll(pageable);
 
 		Page<User> pageUser = userRepository.findAll(pageable);
