@@ -67,8 +67,13 @@ public class BoardService {
 		requestReply.setUser(user);
 		requestReply.setBoard(boardEntity);
 		Reply replyEntity = replyRepository.save(requestReply);
-		// 무한참조 오류 발생 (System.out.println(requestReply);
+		// 무한참조 오류 발생 (System.out.println(requestReply)); --> JsonIgnoreProperties 사용. 무한참조 뿐 아니라 숨겨야할 정보도 숨길 수 있음. 
 		return replyEntity;
+	}
+	
+	@Transactional
+	public void deleteReplyById(int replyId) {
+		replyRepository.deleteById(replyId);
 	}
 	
 

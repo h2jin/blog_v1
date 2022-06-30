@@ -112,25 +112,51 @@ let index = {
 				// response - int status, T data
 				console.log(response.data)
 				addReplyElement(response.data);
+				// location.href = `/board/${data.boardId}`;
 			}
 		}).fail(function(error) {
 			alert("댓글작성에 실패하였습니다.")
 		});
 
-	}	
+	},	//end of reply save
+	
+	replyDelete: function(boardId, replyId) {
+		// 댓글의 id 값, 해당 게시글의 boardId,
+		
+		$.ajax({
+			type: "DELETE",
+			url: `/api/board/${boardId}/reply/${replyId}`,
+			dataType: "json"
+		}).done(function(response) {
+			console.log(response.data);
+			alert("댓글 삭제 성공")
+			location.href = `/board/${boardId}`;
+			// 비동기로 만들기 도전과제
+			// addReplyElement(response.data);
+		}).fail(function(error) {
+			console.log(error);
+			alert("댓글 삭제 실패")
+		});
+	}
+	
 }
 
 function addReplyElement(reply) {
+	let principalId = $("#principal--id");
 	let childElement = `<li class="list-group-item d-flex justify-content-between" id="reply--${reply.id}">
 				<div>${reply.content}</div>
 				<div class="d-flex">
 					<div>작성자 : ${reply.user.username}&nbsp;&nbsp;</div>
-					<button class="badge badge-danger">삭제</button>
+					<c:if test="${reply.user.id} == principalId ">
+						<button class="badge badge-danger" onclick="index.replyDelete(${reply.board.id} ,${reply.id});">삭제</button>
+					</c:if>
 				</div>
 			</li>`;
 	$("#reply--box").prepend(childElement);
 	$("#reply-content").val("");
 }
+
+
 
 index.init();
 

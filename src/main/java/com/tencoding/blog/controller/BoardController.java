@@ -23,7 +23,7 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@GetMapping({"", "/"})
-	public String index(@PageableDefault(size = 2, sort = "id", direction = Direction.DESC) Pageable pageable ,Model model) {
+	public String index(@PageableDefault(size = 4, sort = "id", direction = Direction.DESC) Pageable pageable ,Model model) {
 		Page<Board> boards = boardService.getBoardList(pageable);
 		model.addAttribute("pageable", boards);
 		return "index";
