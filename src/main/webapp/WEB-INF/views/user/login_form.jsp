@@ -8,11 +8,11 @@
 	<form action="/auth/loginProc" method="post">
 	  <div class="form-group">
 	    <label for="username">user name:</label>
-	    <input type="text" class="form-control" name="username" placeholder="Enter username" id="username">
+	    <input type="text" class="form-control" name="username" value="test1" placeholder="Enter username" id="username">
 	  </div>
 	  <div class="form-group">
 	    <label for="password">Password:</label>
-	    <input type="password" class="form-control" name="password" placeholder="Enter password" id="password">
+	    <input type="password" class="form-control" name="password" value="asd123" placeholder="Enter password" id="password">
 	  </div>
 	  <div class="form-group form-check">
 	    <label class="form-check-label">
