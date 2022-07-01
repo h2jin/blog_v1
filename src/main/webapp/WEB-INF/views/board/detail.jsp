@@ -21,7 +21,7 @@
 	<hr/>
 	<div class="form-group m-2">
 		<h3>${board.content}</h3>
-	</div>
+	</div> 
 	<br/>
 	<br/>
 	<hr/>
