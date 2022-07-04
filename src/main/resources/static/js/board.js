@@ -83,6 +83,9 @@ let index = {
 		}
 		
 		$.ajax({
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(header, token)
+			},
 			type: "PUT",
 			url: "/api/board/" + boardId,
 			data: JSON.stringify(data),
