@@ -1,4 +1,7 @@
 
+let token = $("meta[name='_csrf']").attr("content");
+let header = $("meta[name='_csrf_header']").attr("content");
+
 let index = {
 	init: function() {
 		$("#btn-save").bind("click", () => {
@@ -20,10 +23,12 @@ let index = {
 	},
 	
 	save: function() {
+		// csrf 
+		
 		// 데이터 가져오기
 		// json 변환해야 하기 떄문에 오브젝트로 만들것임
 		let data = {
-			title: $("#title").val(),
+			title: xSSCheck($("#title").val(), 1),
 			content: $("#content").val()
 		}
 		
@@ -31,6 +36,9 @@ let index = {
 		console.log(data);
 		
 		$.ajax({
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(header, token)
+			},
 			type: "POST",
 			url: "/api/board",
 			data: JSON.stringify(data),
@@ -50,6 +58,9 @@ let index = {
 		let id = $("#board-id").text();
 		
 		$.ajax({
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(header, token)
+			},
 			type: "DELETE",
 			url: "/api/board/" + id
 		})
@@ -90,6 +101,12 @@ let index = {
 	
 	// 댓글 등록 (boardId : 해단 게시글의 Id)
 	replySave: function() {
+		
+		// csrf 활성화 후에는 헤더에 token 값을 넣어야 정상 동작한다.
+		
+		console.log("token : " + token);
+		console.log("header : " + header);
+		
 		// 데이터 가져오기
 		// json 변환해야 하기 떄문에 오브젝트로 만들것임
 		let data = {
@@ -102,6 +119,10 @@ let index = {
 		
 		// (``)백틱 -> 자바 스크립트 변수를 문자열 안에 넣어서 사용할 수 있다.
 		$.ajax({
+			beforeSend: function(xhr) {
+				console.log("xhr : " + xhr)
+				xhr.setRequestHeader(header, token)
+			},
 			type: "POST",
 			url: `/api/board/${data.boardId}/reply`,
 			data: JSON.stringify(data),
@@ -124,6 +145,9 @@ let index = {
 		// 댓글의 id 값, 해당 게시글의 boardId,
 		
 		$.ajax({
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(header, token)
+			},
 			type: "DELETE",
 			url: `/api/board/${boardId}/reply/${replyId}`,
 			dataType: "json"
@@ -154,6 +178,16 @@ function addReplyElement(reply) {
 			</li>`;
 	$("#reply--box").prepend(childElement);
 	$("#reply-content").val("");
+}
+
+function xSSCheck(str, level) {
+    if (level == undefined || level == 0) {
+        str = str.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\+|\-/g,"");
+    } else if (level != undefined && level == 1) {
+        str = str.replace(/\</g, "&lt;");
+        str = str.replace(/\>/g, "&gt;");
+    }
+    return str;
 }
 
 

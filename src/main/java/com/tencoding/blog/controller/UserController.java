@@ -1,5 +1,7 @@
 package com.tencoding.blog.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -39,9 +42,6 @@ public class UserController {
 	AuthenticationManager authenticationManager;
 	
 	@Autowired
-	private HttpSession httpSession;
-	
-	@Autowired
 	private UserService userService;
 	
 	@GetMapping("/auth/login_form")
@@ -55,11 +55,14 @@ public class UserController {
 		return "user/join_form";
 	}
 	
+	// security 에 맡기지 말고 직접 처리해보자 - 재정의
 	@GetMapping("/logout")
-	public String logout() {
-		// 세션 정보를 제거, 로그아웃 처리
-		httpSession.invalidate();
-		return "redirect:/"; // 처음화면으로 돌아감.
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication != null) {
+			new SecurityContextLogoutHandler().logout(request, response, authentication);
+		}
+		return "redirect:/";
 	}
 	
 	@GetMapping("/user/update_form")

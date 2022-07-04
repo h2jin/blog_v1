@@ -6,6 +6,7 @@
 <div class="container">
 	<!-- loginPorc를 만들지 않음 왜나하면 spring security가 가로채서 진행할 것임. -->
 	<form action="/auth/loginProc" method="post">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	  <div class="form-group">
 	    <label for="username">user name:</label>
 	    <input type="text" class="form-control" name="username" value="test1" placeholder="Enter username" id="username">
