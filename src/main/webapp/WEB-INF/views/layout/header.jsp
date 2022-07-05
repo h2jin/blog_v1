@@ -14,6 +14,7 @@
 <title>Insert title here</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -59,14 +60,28 @@
 				       <a class="nav-link" href="/logout">로그아웃</a>
 				     </li>
 	    		</c:otherwise>
-	    	
 	    	</c:choose>
-	      
-	      
+	    		<li class="nav-item dropdown">
+	    			<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+	    			STORY
+	    			</a>
+	    			<ul class="dropdown-menu">
+	    				<li class="nav-item">
+		    				<a href="/story/home" class="dropdown-item text-primary">
+		    					<i class="fas fa-cloud"></i>&nbsp;&nbsp;SHOW STORY
+		    				</a>
+	    				</li>
+	    				<li class="nav-item">
+		    				<a href="/story/upload" class="dropdown-item text-primary">
+		    					<i class="fas fa-file"></i>&nbsp;&nbsp;UPLOAD
+		    				</a>
+	    				</li>
+	    			</ul>
+				</li>
 	    </ul>
+	    
 	  </div>
 	</nav>
-	<br/>
 	
 	<!--
 	<script type="text/javascript">
