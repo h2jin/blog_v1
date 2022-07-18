@@ -37,7 +37,7 @@ public class StoryController {
 		return "/story/upload";
 	}
 	
-	// mime 타입 멀티~로 데이터 들어옴
+	// mime 타입 멀티파트로 데이터 들어옴
 	// name 값 같아야 함.
 	@PostMapping("/image/upload")
 //	public String storyImageUpload(MultipartFile file, String storyText) {

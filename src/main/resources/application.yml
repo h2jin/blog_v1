@@ -55,7 +55,7 @@ spring:
       
 # 해당 경로가 없으면 오류 (아니면, 자바 코드로 경로 만드는 코드를 짜면 됨)
 file:
-  path: C:/springimageDir/tencoblog/upload/      
+  path: C:/springimageDir/tencoblog/upload/   
       
       
 tenco:

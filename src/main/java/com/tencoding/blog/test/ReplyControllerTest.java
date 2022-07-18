@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tencoding.blog.dto.ReplyCountOfBoardDto;
 import com.tencoding.blog.model.Board;
 import com.tencoding.blog.model.Reply;
 import com.tencoding.blog.repository.BoardRepository;
+import com.tencoding.blog.repository.ReplyCountOfBoardRepository;
 import com.tencoding.blog.repository.ReplyRepository;
 
 @RestController
@@ -20,6 +22,10 @@ public class ReplyControllerTest {
 	
 	@Autowired
 	private ReplyRepository replyRepository;
+	
+	@Autowired
+	private ReplyCountOfBoardRepository replyCountOfBoardRepository;
+	
 	
 	@GetMapping("/test/board/{boardId}")
 	public Board getBoard(@PathVariable int boardId) {
@@ -41,6 +47,14 @@ public class ReplyControllerTest {
 	@GetMapping("/test/reply")
 	public List<Reply> getReply() {
 		return replyRepository.findAll();
+	}
+	
+	// ../test/group-by-count
+	@GetMapping("/test/group-by-count")
+	public String test3() {
+		// 기본로직은 컨트롤러 - 서비스 - repository 지만 테스트여서 일단 건너뜀.
+		List<ReplyCountOfBoardDto> result = replyCountOfBoardRepository.getReplyCount();
+		return "" + result.toString();
 	}
 	
 }
