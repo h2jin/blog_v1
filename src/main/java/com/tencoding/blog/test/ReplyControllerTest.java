@@ -52,7 +52,7 @@ public class ReplyControllerTest {
 	// ../test/group-by-count
 	@GetMapping("/test/group-by-count")
 	public String test3() {
-		// 기본로직은 컨트롤러 - 서비스 - repository 지만 테스트여서 일단 건너뜀.
+		// 기본로직은 컨트롤러 - 서비스 - repository 지만 테스트여서 일단 건너뜀. 
 		List<ReplyCountOfBoardDto> result = replyCountOfBoardRepository.getReplyCount();
 		return "" + result.toString();
 	}
